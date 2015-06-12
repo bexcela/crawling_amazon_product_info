@@ -23,11 +23,25 @@ class AmazonProductInfoSpider(scrapy.Spider):
         products_ul = soup.find('ul', {'id': 's-results-list-atf'})
         for product_li in products_ul.findAll('li'):
             if product_li.get('id') != None:
+                # asin
                 product_asin = product_li.get('data-asin')
                 print product_asin
 
+                # title
                 product_title = product_li.find('h2', {'class': 'a-size-base a-color-null s-inline s-access-title a-text-normal'})
                 print product_title.text
+
+                # authors
+                authors_area = product_li.find('div', {'class': 'a-row a-spacing-mini'})
+                if authors_area != None:
+                    product_authors = authors_area.findAll('span', {'class': 'a-size-small a-color-secondary'})
+
+                    for product_author in product_authors:
+                        if (len(product_author.text) != 0):
+                            print product_author.text
+                else:
+                    print 'author not found'
+
 
                 print '--------------------------'
 

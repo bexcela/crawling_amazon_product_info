@@ -13,4 +13,3 @@ class CrawlingAmazonProductInfoItem(scrapy.Item):
     ids = scrapy.Field()
     quthors = scrapy.Field()
     title = scrapy.Field()
-    page_urls = scrapy.Field()
