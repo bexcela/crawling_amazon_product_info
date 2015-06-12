@@ -25,6 +25,10 @@ class AmazonProductIdSpider(scrapy.Spider):
             if product_li.get('id') != None:
                 print product_li.get('id')
                 print product_li.get('data-asin')
+
+                product_title = product_li.find('h2', {'class': 'a-size-base a-color-null s-inline s-access-title a-text-normal'})
+                print product_title.text
+
                 print '--------------------------'
 
         # 次のページヘのリンクを組み立てる
