@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from bs4 import BeautifulSoup
 
 class AmazonProductIdSpider(scrapy.Spider):
     name = "amazon_product_id"
