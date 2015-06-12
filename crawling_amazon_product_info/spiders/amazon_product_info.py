@@ -7,9 +7,14 @@ from bs4 import BeautifulSoup
 class AmazonProductInfoSpider(scrapy.Spider):
     name = "amazon_product_info"
     allowed_domains = ["amazon.co.jp"]
-    start_urls = (
-        'http://www.amazon.co.jp/s/keywords=%E9%87%91%E5%B1%9E%E5%B7%A5%E4%BD%9C%E6%8A%80%E8%A1%93',
-    )
+
+    def __init__(self, *args, **kwargs):
+        super(AmazonProductInfoSpider, self).__init__(*args, **kwargs)
+        search_keywords = ['金属工作技術']
+
+        for search_keyword in search_keywords:
+            self.start_urls.append('http://www.amazon.co.jp/s/keywords=%s' % search_keyword)
+
 
     def parse(self, response):
         soup = BeautifulSoup(response.body)
