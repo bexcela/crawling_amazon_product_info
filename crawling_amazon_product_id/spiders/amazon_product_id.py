@@ -6,7 +6,7 @@ class AmazonProductIdSpider(scrapy.Spider):
     name = "amazon_product_id"
     allowed_domains = ["amazon.co.jp"]
     start_urls = (
-        'http://www.amazon.co.jp/s/keywords=%E3%82%AA%E3%83%A9%E3%82%A4%E3%83%AA%E3%83%BC', # テスト用にオライリー検索結果ページを指定
+        'http://www.amazon.co.jp/s/keywords=%E9%87%91%E5%B1%9E%E5%B7%A5%E4%BD%9C%E6%8A%80%E8%A1%93',
     )
 
     def parse(self, response):
@@ -23,8 +23,8 @@ class AmazonProductIdSpider(scrapy.Spider):
         products_ul = soup.find('ul', {'id': 's-results-list-atf'})
         for product_li in products_ul.findAll('li'):
             if product_li.get('id') != None:
-                print product_li.get('id')
-                print product_li.get('data-asin')
+                product_asin = product_li.get('data-asin')
+                print product_asin
 
                 product_title = product_li.find('h2', {'class': 'a-size-base a-color-null s-inline s-access-title a-text-normal'})
                 print product_title.text
