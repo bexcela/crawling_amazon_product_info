@@ -19,6 +19,14 @@ class AmazonProductIdSpider(scrapy.Spider):
             # 次のページが見つからなかった場合は終了
             yield
 
+        # コンテンツの情報を取得
+        products_ul = soup.find('ul', {'id': 's-results-list-atf'})
+        for product_li in products_ul.findAll('li'):
+            if product_li.get('id') != None:
+                print product_li.get('id')
+                print product_li.get('data-asin')
+                print '--------------------------'
+
         # 次のページヘのリンクを組み立てる
         base_url = 'http://www.amazon.co.jp/'
         next_path = next_page['href']
