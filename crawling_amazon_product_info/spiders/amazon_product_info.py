@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import re
 from bs4 import BeautifulSoup
+
 
 class AmazonProductInfoSpider(scrapy.Spider):
     name = "amazon_product_info"
@@ -38,7 +40,8 @@ class AmazonProductInfoSpider(scrapy.Spider):
 
                     for product_author in product_authors:
                         if (len(product_author.text) != 0):
-                            print product_author.text
+                            if not re.match('^\d{4}', product_author.text):
+                                print product_author.text
                 else:
                     print 'author not found'
 
