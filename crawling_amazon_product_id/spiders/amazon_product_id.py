@@ -6,7 +6,7 @@ class AmazonProductIdSpider(scrapy.Spider):
     name = "amazon_product_id"
     allowed_domains = ["amazon.co.jp"]
     start_urls = (
-        'http://www.amazon.co.jp/s/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E3%82%AA%E3%83%A9%E3%82%A4%E3%83%AA%E3%83%BC&rh=i%3Aaps%2Ck%3A%E3%82%AA%E3%83%A9%E3%82%A4%E3%83%AA%E3%83%BC', # テスト用にオライリー検索結果ページを指定
+        'http://www.amazon.co.jp/s/keywords=%E3%82%AA%E3%83%A9%E3%82%A4%E3%83%AA%E3%83%BC', # テスト用にオライリー検索結果ページを指定
     )
 
     def parse(self, response):
