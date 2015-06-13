@@ -10,7 +10,12 @@ class AmazonProductInfoSpider(scrapy.Spider):
 
     def __init__(self, *args, **kwargs):
         super(AmazonProductInfoSpider, self).__init__(*args, **kwargs)
-        search_keywords = ['九井 諒子', 'ライチ☆光クラブ']
+
+        # Load search keywords from input file(keywords.txt)
+        search_keywords = []
+        with open("crawling_amazon_product_info/keywords.txt") as f:
+            for line in f:
+                search_keywords.append(line[:-1])
 
         for search_keyword in search_keywords:
             self.start_urls.append('http://www.amazon.co.jp/s/keywords=%s' % search_keyword)
