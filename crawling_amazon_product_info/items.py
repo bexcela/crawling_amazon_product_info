@@ -10,6 +10,6 @@ import scrapy
 
 class CrawlingAmazonProductInfoItem(scrapy.Item):
     search_keywords = scrapy.Field()
-    ids = scrapy.Field()
-    quthors = scrapy.Field()
+    product_asin = scrapy.Field()
+    authors = scrapy.Field()
     title = scrapy.Field()

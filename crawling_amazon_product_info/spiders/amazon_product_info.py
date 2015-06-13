@@ -3,6 +3,8 @@ import scrapy
 import re
 from bs4 import BeautifulSoup
 
+from crawling_amazon_product_info.items import CrawlingAmazonProductInfoItem
+
 
 class AmazonProductInfoSpider(scrapy.Spider):
     name = "amazon_product_info"
@@ -34,14 +36,18 @@ class AmazonProductInfoSpider(scrapy.Spider):
         # コンテンツの情報を取得
         products_ul = soup.find('ul', {'id': 's-results-list-atf'})
         for product_li in products_ul.findAll('li'):
+            item = CrawlingAmazonProductInfoItem()
+
             try:
                 if product_li.get('id') != None:
                     # asin
                     product_asin = product_li.get('data-asin')
+                    item['product_asin'] = product_asin
                     print product_asin
 
                     # title
                     product_title = product_li.find('h2', {'class': 'a-size-base a-color-null s-inline s-access-title a-text-normal'})
+                    item['title'] = product_title
                     print product_title.text
 
                     # authors
@@ -52,10 +58,13 @@ class AmazonProductInfoSpider(scrapy.Spider):
                         for product_author in product_authors:
                             if (len(product_author.text) != 0):
                                 if not re.match('^\d{4}', product_author.text):
-                                    print product_author.text
+                                    item['authors'] = product_author.text
+                                    break
+
                     else:
                         print 'author not found'
-
+                        item['authors'] = 'not found'
+                    print item['authors']
 
                     print '--------------------------'
             except:
