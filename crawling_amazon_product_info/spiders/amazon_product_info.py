@@ -47,7 +47,7 @@ class AmazonProductInfoSpider(scrapy.Spider):
 
                     # title
                     product_title = product_li.find('h2', {'class': 'a-size-base a-color-null s-inline s-access-title a-text-normal'})
-                    item['title'] = product_title
+                    item['title'] = product_title.text
                     print product_title.text
 
                     # authors
