@@ -67,9 +67,13 @@ class AmazonProductInfoSpider(scrapy.Spider):
                     print item['authors']
 
                     print '--------------------------'
+
+                    yield item
             except:
                 print "some contents not found. Let's pass it."
                 pass
+
+
 
         # 次のページヘのリンクを組み立てる
         base_url = 'http://www.amazon.co.jp/'
