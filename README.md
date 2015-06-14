@@ -1,6 +1,6 @@
 # USAGE
 
-## Instal packages
+## Install packages
 pip install -r requirements.txt
 
 ## Running command
